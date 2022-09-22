@@ -17,6 +17,11 @@ namespace AS2223_3G_INF_PieriEdoardo_RubricaCSV
             openFileDialog.ShowDialog();    //apre la selezione file
             txtNomeFile.Text = openFileDialog.FileName; //scrive nella textbox il percorso del file
             StreamReader streamreader = new StreamReader(openFileDialog.FileName);
+            while(!streamreader.EndOfStream)    //ciclo che si ripete fino a quando non finiscono le righe
+            {
+                lineaCorrente = streamreader.ReadLine();
+                lstElenco.Items.Add(lineaCorrente);
+            }
         }
 
         private void btnVisualizza_Click(object sender, EventArgs e)
