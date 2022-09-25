@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.IO;
 namespace AS2223_3G_INF_PieriEdoardo_RubricaCSV
 {
@@ -31,7 +32,36 @@ namespace AS2223_3G_INF_PieriEdoardo_RubricaCSV
 
         private void btnVisualizza_Click(object sender, EventArgs e)
         {
-
+            lstElenco.Items.Clear();
+            switch(cmbRicerca.Text)
+            {
+                case "Contiene":
+                    for(int c = 0; c < LENGTH; c++)
+                    {
+                        if (cognomi[c].ToLower().Contains(txtCognome.Text.ToLower()))
+                        {
+                            lstElenco.Items.Add($"{nomi[c]};{cognomi[c]};{citta[c]}");
+                        }
+                    }
+                    break;
+                case "Inizia per":
+                    for (int c = 0; c < LENGTH; c++) {
+                        if (cognomi[c].Trim().ToLower().StartsWith(txtCognome.Text.ToLower()))  //il metodo Trim rimuove lo spazio davanti al cognome, in modo tale
+                        {                                                                       //che non lo conti nella Startswith (nel file csv ho lasciato uno
+                            lstElenco.Items.Add($"{nomi[c]};{cognomi[c]};{citta[c]}");          //spazio dopo la virgola)
+                        }
+                    }
+                    break;
+                case "Finisce per":
+                    for (int c = 0; c < LENGTH; c++)
+                    {
+                        if (cognomi[c].ToLower().EndsWith(txtCognome.Text.ToLower()))
+                        {
+                            lstElenco.Items.Add($"{nomi[c]};{cognomi[c]};{citta[c]}");
+                        }
+                    }
+                    break;
+            }
         }
     }
 }
