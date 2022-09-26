@@ -2,12 +2,32 @@ using System.Globalization;
 using System.IO;
 namespace AS2223_3G_INF_PieriEdoardo_RubricaCSV
 {
+    public class Contatto
+    {
+        string Nome;
+        string Cognome;
+        string Citta;
+        public Contatto(string nome, string cognome, string citta)
+        {
+            Nome = nome;
+            Cognome = cognome;
+            Citta = citta;
+        }
+        public Contatto(string riga)
+        {
+            string[] rigaCorrente = riga.Split(',');
+            Cognome = rigaCorrente[0];
+            Nome = rigaCorrente[1];
+            Citta = rigaCorrente[2];
+        }
+    }
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
         }
+        const int LUNGHEZZA_MAX = 50;
         string[] nomi = new string[LENGTH];
         string[] cognomi = new string[LENGTH];
         string[] citta = new string[LENGTH];
